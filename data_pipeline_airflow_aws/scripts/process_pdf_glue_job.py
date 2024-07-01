@@ -11,7 +11,7 @@ job = Job(glueContext)
 
 
 dyf = glueContext.create_dynamic_frame.from_catalog(
-    database="enem_pdf_project", table_name="content"
+    database="test-enem-datacatalog-database", table_name="content"
 )
 dyf.printSchema()
 df = dyf.toDF()
@@ -37,6 +37,6 @@ df = (
     .drop("content", "text")
 )
 
-df.write.csv("s3://primuslearning-enem-bucket/processed/", mode="overwrite", header=True)
+df.write.csv("s3://test-enem-bucket/processed/", mode="overwrite", header=True)
 
 job.commit()
